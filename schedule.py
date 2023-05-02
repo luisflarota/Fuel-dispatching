@@ -2,7 +2,7 @@ import gurobipy as gp
 from gurobipy import GRB
 import pandas as pd
 from utils import *
-
+np.random.seed(5)
 # Create a new optimization model with the given name
 def runOptimization(frationew, timestamps, fratiopt, mfopt):
     # Create a new optimization model
