@@ -4,6 +4,7 @@ import networkx as nx
 import datetime
 import random
 ## First case: Fuel01 == 00 ang merging
+np.random.seed(5)
 RAND = np.random.seed(5)
 def returnstd(empty, full, ton):
     file = pd.read_csv("meanstd.csv")
