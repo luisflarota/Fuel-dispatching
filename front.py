@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 from back import *
 from schedule import *
-
+np.random.seed(5)
 def main():
     st.title("Automated Fuel Dispatching Project")
     
