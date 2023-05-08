@@ -4,13 +4,14 @@ import pandas as pd
 from utils import *
 np.random.seed(5)
 # Create a new optimization model with the given name
-def runOptimization(frationew, timestamps, fratiopt, mfopt):
+def runOptimization(frationew, timestamps, fratiopt, mfopt, all='Yes'):
     # Create a new optimization model
     model = gp.Model('Truckfake')
     
     # Get the set of all trucks
     trucks = frationew.keys()
-    
+    print('z'*10)
+    print(len(trucks))
     # Get the set of all time periods
     periods = timestamps
     
@@ -32,9 +33,11 @@ def runOptimization(frationew, timestamps, fratiopt, mfopt):
         gp.quicksum(y_truck_time[truck, time]* fratiopt[truck][time] for time in timestamps) >=0 for truck in trucks)
     
     ## All trucks should fuel
-    model.addConstr(gp.quicksum(
-        y_truck_time[truck, time] for truck in trucks for time in timestamps
-            ) >= len(trucks))
+    if all=='Yes':
+        model.addConstr(gp.quicksum(
+            y_truck_time[truck, time] for truck in trucks for time in timestamps
+                ) >= len(trucks))
+
     ## Only 15 minutes allowed for fueling (previously 5)
     time_to_fuel = pd.Timedelta(15, 'm')
     
@@ -83,6 +86,48 @@ def runOptimization(frationew, timestamps, fratiopt, mfopt):
 
 # Create a new optimization model with the given name
 def runOptimization_2(frationew, timestamps, fratiopt, mfopt):
+    # Create a Gurobi optimization model instance
+    model = gp.Model('Truckfake2')
+
+    # Define the set of all trucks
+    trucks = frationew.keys()
+
+    # Define the set of all time periods
+    periods = timestamps
+
+    # Add binary decision variables for each truck and time period
+    y_truck_time = model.addVars(trucks, periods, vtype=GRB.BINARY, name='truckbin')
+
+    # Add constraints to the model
+    ## Only one truck can be active at each time period
+    one_truck_time = model.addConstrs(
+        gp.quicksum(y_truck_time[truck, time] for truck in trucks) <= 1 for time in timestamps)
+
+    ## Each truck can only fuel once and all should fuel
+    time_taken = model.addConstrs(
+        gp.quicksum(y_truck_time[truck, time] for time in timestamps) <= 1 for truck in trucks)
+
+    ## All trucks should fuel
+    model.addConstr(gp.quicksum(y_truck_time[truck, time] for truck in trucks for time in timestamps) >= len(trucks))
+
+    ## Each truck must have enough fuel to complete its assigned time periods
+    norunfuel = model.addConstrs(
+        gp.quicksum(y_truck_time[truck, time] * fratiopt[truck][time] for time in timestamps) >= 0 for truck in trucks)
+
+    # Calculate maximum match factor
+    max_mf = gp.quicksum(mfopt[truck][time] * y_truck_time[truck, time] for truck in trucks for time in periods)
+
+    # Set the objective of the model to maximize the difference between the match factor and the time taken
+    model.setObjective(max_mf, GRB.MAXIMIZE)
+
+    # Solve the optimization model
+    model.optimize()
+
+    return model
+
+
+# Create a new optimization model with the given name
+def runOptimization_3(frationew, timestamps, fratiopt, mfopt):
     # Create a Gurobi optimization model instance
     model = gp.Model('Truckfake2')
 
