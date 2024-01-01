@@ -2,13 +2,11 @@
 
 ## Introduction
 
-![Dispatchers impact in mining]
 *Source: Hustrulid, W. A., Kuchta, M., and Martin, R. K. (2013). Open pit mine planning and design, two volume set & CD-ROM pack. CRC Press.*
 *Moradi, A. and Askari-Nasab, H. (2019). Mining fleet management systems: a review of models and algorithms. International Journal of Mining, Reclamation and Environment, 33(1):42–60.*
 
 ## Research Problem & Hypothesis
 
-![Research Problem & Hypothesis]
 1. Machine learning - fuel consumption
 2. Optimization model - dispatching
 
@@ -18,10 +16,10 @@
 
 | Author                         | Algorithm | Features                      | Metric | Perf. |
 |--------------------------------|-----------|--------------------------------|--------|-------|
-| 1. Dindarloo and S. (2015)[^34] | ANN       | Payload, Cycle status          | MAPE   | 10\%  |
-| 2. Dindarloo and S. (2016)[^34] | PLSR      | Cycle status                   | MAPE   | 6\%   |
-| 3. Wang et al. (2021)[^5]       | XGBoost   | Distance, Time, Uphill distance | MAPE   | 8.8\% |
-| **4. Soofastaei (2022)[^6]**    | **ANN**   | **Payload, Resistance, Speed** | **R^2**| **90\%** |
+| 1. Dindarloo and S. (2015) | ANN       | Payload, Cycle status          | MAPE   | 10\%  |
+| 2. Dindarloo and S. (2016) | PLSR      | Cycle status                   | MAPE   | 6\%   |
+| 3. Wang et al. (2021)      | XGBoost   | Distance, Time, Uphill distance | MAPE   | 8.8\% |
+| **4. Soofastaei (2022)**    | **ANN**   | **Payload, Resistance, Speed** | **R^2**| **90\%** |
 
 ### Fuel dispatching review
 
@@ -35,7 +33,6 @@
 
 ### Data Collection
 
-![Mine Z Haulage Fleet]
 - Data Retrieved from FMS
 - MF is the match factor, calculated by dividing the sum of truck loading times by the product of the total loaders and the average truck cycle time (Burt and Caccetta (2007)).
 
@@ -91,7 +88,6 @@
 
 ## Results - Demo
 
-![Demo]
 
 ## Results - Summary
 
