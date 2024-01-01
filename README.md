@@ -88,6 +88,7 @@
 
 ## Results - Demo
 
+[Link to LIVE DEMO](https://luisflarota-650finalthesis-front-3vvewc.streamlit.app/)
 
 ## Results - Summary
 
