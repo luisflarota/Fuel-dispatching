@@ -25,9 +25,9 @@
 
 | Approach                     | Features                                      | Lacking                                                                                          |
 |------------------------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------|
-| 1. Caceres and Well (2017)[^7]| Automated fuel dispatching, better filling volumes, lower queues and person-hours | - Math formulation  |
-| 2. Modular Mining Systems (2019)[^8]| Set minimum fuel level, assign manually     | - Trial and error approaches; - Needs customization; - No benefits and consequences.  |
-| 3. Leonida (2022)[^9]         | Maximizes fuel utilization, minimizes trips to fuel locations                | - Math formulation; - Multi-objective function; - No proven results |
+| 1. Caceres and Well (2017)| Automated fuel dispatching, better filling volumes, lower queues and person-hours | - Math formulation  |
+| 2. Modular Mining Systems (2019)| Set minimum fuel level, assign manually     | - Trial and error approaches; - Needs customization; - No benefits and consequences.  |
+| 3. Leonida (2022)        | Maximizes fuel utilization, minimizes trips to fuel locations                | - Math formulation; - Multi-objective function; - No proven results |
 
 ## Methodology
 
